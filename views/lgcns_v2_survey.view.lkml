@@ -60,6 +60,23 @@ view: lgcns_v2_survey {
     type: number
     sql: ${TABLE}.nexonsn ;;
   }
+  dimension: group_title {
+    description: "유저그룹"
+    type: string
+    sql: ${TABLE}.group_title ;;
+  }
+  dimension: is_main_account {
+    description: "본계정여부"
+    type: string
+    sql: ${TABLE}.is_main_account ;;
+  }
+  dimension: new_or_return_user {
+    description: "신규/복귀"
+    type: string
+    sql: ${TABLE}.new_or_return_user ;;
+  }
+
+
   dimension_group: sdate {
     description: "설문일"
     type: time
