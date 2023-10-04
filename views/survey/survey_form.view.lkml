@@ -87,7 +87,7 @@ view: survey_form {
   dimension: qid {
     description: "질문 ID"
     type: string
-    sql: ${TABLE}.qid ;;
+    sql: ${TABLE}.question_id ;;
     link: {
       label: "2-2. Response Analysis"
       url: "/dashboards/39?pid={{ value }}"
