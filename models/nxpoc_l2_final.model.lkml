@@ -2,6 +2,7 @@ connection: "nxpoc_l2_final"
 
 # include all the views
 include: "/views/survey/*.view.lkml"
+include: "/views/**/*.view.lkml"
 
 explore: survey {
   label: "Survey"
@@ -24,3 +25,4 @@ explore: survey {
     relationship: many_to_one
   }
 }
+explore: lgcns_v2_survey {}
