@@ -134,4 +134,15 @@ view: survey {
       url: "{{ link | replace: \"survey.qid,\", \"\" | replace: \"survey.question_title,\", \"\" }}"
     }
   }
+
+  measure: sdate_max_date {
+    type: max
+    sql: ${sdate_date} ;;
+  }
+
+  measure: sdate_min_date {
+    type: min
+    sql: ${sdate_date} ;;
+  }
+
 }
