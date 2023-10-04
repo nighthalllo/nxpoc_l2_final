@@ -73,6 +73,16 @@ view: survey {
     datatype: datetime
     sql: ${TABLE}.sdatetime ;;
   }
+  dimension: category {
+    description: "카테고리"
+    type: string
+    sql: ${TABLE}.category ;;
+  }
+  dimension: survey1_name {
+    description: "대분류"
+    type: string
+    sql: ${TABLE}.survey1_name ;;
+  }
 
   ##### MEASURES #####
   measure: count {
@@ -98,6 +108,30 @@ view: survey {
     link: {
       label: "Drill by User Segment & New/Return"
       url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" }}&limit=20&pivots=user_segment.new_or_return_user&sorts=survey.group_title+asc"
+    }
+  }
+  measure: number_of_unique_survey_by_drill_survey {
+    description: "유니크 설문 수"
+    type: count_distinct
+    sql: ${sid} ;;
+    drill_fields: [survey.sid, category, survey1_name, number_of_unique_survey_by_drill_survey]
+    link: {
+      label: "Drill by Survey"
+      url: "{{ link | replace: \"survey.sid,\", \"\" | replace: \"survey.category,\", \"\" }}"
+    }
+    link: {
+      label: "Drill by Category"
+      url: "{{ link | replace: \"survey.sid,\", \"\" | replace: \"survey.survey1_name,\", \"\" }}"
+    }
+  }
+  measure: number_of_unique_question_by_drill_survey {
+    description: "유니크 질문 수"
+    type: count_distinct
+    sql: ${survey.qid} ;;
+    drill_fields: [survey.qid, survey.question_title, survey.question_type, number_of_unique_question_by_drill_survey]
+    link: {
+      label: "Drill by question_type"
+      url: "{{ link | replace: \"survey.qid,\", \"\" | replace: \"survey.question_title,\", \"\" }}"
     }
   }
 }
