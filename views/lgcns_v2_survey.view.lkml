@@ -97,5 +97,29 @@ view: lgcns_v2_survey {
   measure: count {
     description: "Count"
     type: count
+    drill_fields: [question_title ,question_group]
+    link: {
+      label: "group by question_title"
+      url: "{{link}}&pivots=count"
+    }
+    link: {
+      label: "group by question_group"
+      url: "{{link}}&pivots=count"
+    }
+  }
+  measure: average_likert_drill_by_survey {
+    description: "평균점수"
+    type: average
+    value_format_name: decimal_2
+    sql: ${answer_num} ;;
+    drill_fields: [question_title, question_group]
+    link: {
+      label: "Drill by question_title"
+      url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" | replace: \"user_segment.new_or_return_user,\", \"\" }}&limit=20&sorts=survey.group_title+asc"
+    }
+    link: {
+      label: "Drill by question_group"
+      url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" | replace: \"user_segment.group_title,\", \"\" }}&limit=20&sorts=survey.group_title+asc"
+    }
   }
 }
