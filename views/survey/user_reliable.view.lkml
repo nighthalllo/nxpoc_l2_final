@@ -8,7 +8,7 @@ view: user_reliable {
             max(CASE WHEN user_segment.is_response_unreliable  THEN survey.nexonsn ELSE null END) AS user_segment_is_response_unreliable,
             max(CASE WHEN user_segment.is_response_unreliable  THEN null ELSE survey.nexonsn END) AS user_segment_is_response_reliable
     FROM `NXPOC_L2.LGCNS_NXPOC_SURVEY`  AS survey
-    LEFT JOIN `NXPOC_L2.LGCNS_NXPOC_USER_SEGMENT`  AS user_segment ON survey.nexonsn = user_segment.nexonsn and survey.sid = user_segment.sid
+    LEFT JOIN `NXPOC_L2.LGCNS_NXPOC_NXUSER_SEGMENT`  AS user_segment ON survey.nexonsn = user_segment.nexonsn and survey.sid = user_segment.sid
     group by 1;;
   }
 
