@@ -6,10 +6,10 @@ view: survey {
     description: "질문 ID"
     type: string
     sql: ${TABLE}.qid ;;
-    link: {
-      label: "2-2. Response Analysis"
-      url: "/dashboards/48?질문Id={{ value }}"
-    }
+    #link: {
+    #  label: "2-2. Response Analysis"
+    #  url: "/dashboards/48?질문Id={{ value }}"
+    #}
   }
 
   dimension: sid {
@@ -17,10 +17,10 @@ view: survey {
     type: number
     value_format_name: id
     sql: ${TABLE}.sid ;;
-    link: {
-      label: "2-1. Survey Analysis"
-      url: "/dashboards/46?설문ID={{ value }}"
-    }
+    #link: {
+    #  label: "2-1. Survey Analysis"
+    #  url: "/dashboards/46?설문ID={{ value }}"
+    #}
   }
 
   dimension: category {
@@ -130,6 +130,10 @@ view: survey {
     description: "소분류"
     type: string
     sql: ${TABLE}.survey3_name ;;
+    link: {
+      label: "2-1. Survey Analysis"
+      url: "/dashboards/46?설문명={{ value }}"
+    }
   }
 
   dimension: question_group {
