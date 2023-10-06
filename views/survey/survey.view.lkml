@@ -282,7 +282,7 @@ view: survey {
   }
 
   measure: answer_select_max {
-    type: max
+    type: string
     sql: ${answer_select} ;;
   }
 
