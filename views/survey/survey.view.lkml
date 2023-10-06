@@ -280,6 +280,12 @@ view: survey {
     type: min
     sql: ${sdate_date} ;;
   }
+
+  measure: answer_select_max {
+    type: max
+    sql: ${answer_select} ;;
+  }
+
   measure: number_of_unique_user_drill_by_user{
     description: "유니크 유저 수"
     type: count_distinct
