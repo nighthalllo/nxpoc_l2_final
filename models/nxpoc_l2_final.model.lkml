@@ -24,9 +24,9 @@ explore: survey {
     sql_on: ${survey.nexonsn} = ${user_reliable.nexonsn};;
     relationship: many_to_one
   }
-  join: lgcns_nxpoc_nxuser {
+  join: user_nexon {
     type: left_outer
-    sql_on: ${survey.nexonsn} = ${lgcns_nxpoc_nxuser.nexonsn};;
+    sql_on: ${survey.nexonsn} = ${user_nexon.nexonsn};;
     relationship: many_to_one
   }
 
