@@ -6,15 +6,15 @@ view: lgcns_nxpoc_nxuser {
     sql: ${TABLE}.nexonsn ;;
   }
   dimension: gender {
-    type: number
+    type: string
     sql: ${TABLE}.gender ;;
   }
   dimension: play_type {
-    type: number
+    type: string
     sql: ${TABLE}.play_type ;;
   }
   dimension: age_range {
-    type: number
+    type: string
     sql: ${TABLE}.age_range ;;
   }
   measure: count {
