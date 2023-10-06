@@ -24,5 +24,11 @@ explore: survey {
     sql_on: ${survey.nexonsn} = ${user_reliable.nexonsn};;
     relationship: many_to_one
   }
+  join: lgcns_golla_nxuser {
+    type: left_outer
+    sql_on: ${survey.nexonsn} = ${lgcns_golla_nxuser.nexonsn};;
+    relationship: many_to_one
+  }
+
 }
 explore: lgcns_v2_survey {}
