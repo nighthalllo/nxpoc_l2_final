@@ -29,6 +29,11 @@ explore: survey {
     sql_on: ${survey.nexonsn} = ${user_nexon.nexonsn};;
     relationship: many_to_one
   }
+  join: user_info {
+    type: left_outer
+    sql_on: ${survey.nexonsn} = ${user_info.nexonsn};;
+    relationship: many_to_one
+  }
 
 }
 explore: lgcns_v2_survey {}
