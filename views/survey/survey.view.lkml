@@ -282,8 +282,8 @@ view: survey {
   }
 
   measure: answer_select_max {
-    type: max
-    sql: ${answer_select} ;;
+    type: string
+    sql: MAX(${answer_select}) ;;
   }
 
   measure: number_of_unique_user_drill_by_user{
