@@ -107,25 +107,25 @@ view: survey {
   dimension: survey2_id {
     description: "중분류"
     type: string
-    sql: ${TABLE}.survey1_id ;;
+    sql: ${TABLE}.survey2_id ;;
   }
 
   dimension: survey2_name {
     description: "대분류"
     type: string
-    sql: ${TABLE}.survey1_name ;;
+    sql: ${TABLE}.survey2_name ;;
   }
 
   dimension: survey3_id {
     description: "소분류"
     type: string
-    sql: ${TABLE}.survey1_id ;;
+    sql: ${TABLE}.survey3_id ;;
   }
 
   dimension: survey3_name {
     description: "소분류"
     type: string
-    sql: ${TABLE}.survey1_name ;;
+    sql: ${TABLE}.survey3_name ;;
   }
 
   dimension: question_group {
