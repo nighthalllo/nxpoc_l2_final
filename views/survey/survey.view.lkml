@@ -23,6 +23,18 @@ view: survey {
     }
   }
 
+  dimension: survey_type {
+    description: "설문 종류"
+    type: string
+    sql: ${TABLE}.survey_type ;;
+  }
+
+  dimension: is_regular {
+    description: "정기/비정기"
+    type: string
+    sql: ${TABLE}.is_regular ;;
+  }
+
 
   dimension: answer_id {
     description: "답변 ID"
