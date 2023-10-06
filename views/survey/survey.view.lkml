@@ -23,6 +23,24 @@ view: survey {
     }
   }
 
+  dimension: category {
+    description: "카테고리"
+    type: string
+    sql: ${TABLE}.category ;;
+  }
+
+  dimension: survey_type {
+    description: "설문 종류"
+    type: string
+    sql: ${TABLE}.survey_type ;;
+  }
+
+  dimension: is_regular {
+    description: "정기/비정기"
+    type: string
+    sql: ${TABLE}.is_regular ;;
+  }
+
 
   dimension: answer_id {
     description: "답변 ID"
@@ -74,6 +92,134 @@ view: survey {
     sql: ${TABLE}.sdatetime ;;
   }
 
+  dimension: survey1_id {
+    description: "대분류"
+    type: string
+    sql: ${TABLE}.survey1_id ;;
+  }
+
+  dimension: survey1_name {
+    description: "대분류"
+    type: string
+    sql: ${TABLE}.survey1_name ;;
+  }
+
+  dimension: survey2_id {
+    description: "중분류"
+    type: string
+    sql: ${TABLE}.survey2_id ;;
+  }
+
+  dimension: survey2_name {
+    description: "대분류"
+    type: string
+    sql: ${TABLE}.survey2_name ;;
+  }
+
+  dimension: survey3_id {
+    description: "소분류"
+    type: string
+    sql: ${TABLE}.survey3_id ;;
+  }
+
+  dimension: survey3_name {
+    description: "소분류"
+    type: string
+    sql: ${TABLE}.survey3_name ;;
+  }
+
+  dimension: question_group {
+    description: "질문 그룹 (수작업 업데이트)"
+    type: string
+    sql: ${TABLE}.question_group ;;
+  }
+  dimension: question_group_raw {
+    description: "질문 그룹 참조정보"
+    type: string
+    sql: ${TABLE}.question_group_raw ;;
+  }
+  dimension: question_id {
+    description: "질문 ID"
+    type: string
+    sql: ${TABLE}.question_id ;;
+  }
+  dimension: question_seq {
+    description: "질문 순서"
+    type: number
+    sql: ${TABLE}.question_seq ;;
+  }
+  dimension: question_seq_new {
+    description: "질문 순서 (New)"
+    type: string
+    sql: CONCAT(${TABLE}.question_group, '_', LPAD(CAST(${TABLE}.question_seq AS STRING), 3, '0'), '_', ${TABLE}.question_id) ;;
+  }
+  dimension: question_title {
+    description: "질문"
+    type: string
+    sql: ${TABLE}.question_title ;;
+  }
+  dimension: question_type {
+    description: "질문의 답변 형식"
+    type: string
+    sql: ${TABLE}.question_type ;;
+  }
+
+
+  dimension: group_title {
+    description: "세그먼트"
+    type: string
+    sql: ${TABLE}.group_title ;;
+  }
+  dimension: is_main_account {
+    description: "메인케릭터"
+    type: string
+    sql: ${TABLE}.is_main_account ;;
+  }
+  dimension: new_or_return_user {
+    description: "신규/복귀"
+    type: string
+    sql: ${TABLE}.new_or_return_user ;;
+  }
+
+  dimension: is_response_unreliable {
+    description: "불성실 여부"
+    type: yesno
+    sql: ${TABLE}.is_response_unreliable ;;
+  }
+
+  dimension: is_none_info_group_title {
+    description: "불성실 판별정보 - 세그먼트"
+    type: yesno
+    sql: ${TABLE}.is_none_info_group_title ;;
+  }
+  dimension: is_none_info_main_account {
+    description: "불성실 판별정보 - 메인케릭터"
+    type: yesno
+    sql: ${TABLE}.is_none_info_main_account ;;
+  }
+
+
+  dimension: same_response_ratio {
+    description: "불성실 판별정보 - 동일 답변 비율"
+    type: number
+    sql: ${TABLE}.same_response_ratio ;;
+  }
+  dimension: is_same_response {
+    description: "불성실 판별정보 - 동일 답변 98%"
+    type: yesno
+    sql: ${TABLE}.is_same_response ;;
+  }
+
+  dimension: is_none_access {
+    description: "불성실 판별정보 - 접속여부"
+    type: yesno
+    sql: ${TABLE}.is_none_access ;;
+  }
+  dimension: is_none_korean_open_ended {
+    description: "불성실 판별정보 - 한글답변 미존재"
+    type: yesno
+    sql: ${TABLE}.is_none_korean_open_ended ;;
+  }
   ##### MEASURES #####
   measure: count {
     description: "Count"
@@ -98,6 +244,58 @@ view: survey {
     link: {
       label: "Drill by User Segment & New/Return"
       url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" }}&limit=20&pivots=user_segment.new_or_return_user&sorts=survey.group_title+asc"
+    }
+  }
+  measure: number_of_unique_survey_by_drill_survey {
+    description: "유니크 설문 수"
+    type: count_distinct
+    sql: ${sid} ;;
+    drill_fields: [survey.sid, category, survey1_name, number_of_unique_survey_by_drill_survey]
+    link: {
+      label: "Drill by Survey"
+      url: "{{ link | replace: \"survey.sid,\", \"\" | replace: \"survey.category,\", \"\" }}"
+    }
+    link: {
+      label: "Drill by Category"
+      url: "{{ link | replace: \"survey.sid,\", \"\" | replace: \"survey.survey1_name,\", \"\" }}"
+    }
+  }
+  measure: number_of_unique_question_by_drill_survey {
+    description: "유니크 질문 수"
+    type: count_distinct
+    sql: ${survey.qid} ;;
+    drill_fields: [survey.qid, survey.question_title, survey.question_type, number_of_unique_question_by_drill_survey]
+    link: {
+      label: "Drill by question_type"
+      url: "{{ link | replace: \"survey.qid,\", \"\" | replace: \"survey.question_title,\", \"\" }}"
+    }
+  }
+
+  measure: sdate_max_date {
+    type: max
+    sql: ${sdate_date} ;;
+  }
+
+  measure: sdate_min_date {
+    type: min
+    sql: ${sdate_date} ;;
+  }
+  measure: number_of_unique_user_drill_by_user{
+    description: "유니크 유저 수"
+    type: count_distinct
+    sql: ${nexonsn} ;;
+    drill_fields: [user_segment.nexonsn, user_segment.group_title, user_segment.new_or_return_user, number_of_unique_user_drill_by_user]
+    link: {
+      label: "Drill by User Segment"
+      url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" | replace: \"user_segment.new_or_return_user,\", \"\" }}&sorts=user_segment.group_title+asc"
+    }
+    link: {
+      label: "Drill by New/Return"
+      url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" | replace: \"user_segment.group_title,\", \"\" }}&sorts=user_segment.group_title+asc"
+    }
+    link: {
+      label: "Drill by User Segment & New/Return"
+      url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" }}&pivots=user_segment.new_or_return_user&toggle=dat,pik,vis&sorts=user_segment.group_title+asc"
     }
   }
 }
