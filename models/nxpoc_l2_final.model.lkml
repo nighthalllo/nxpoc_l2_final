@@ -32,3 +32,4 @@ explore: survey {
 
 }
 explore: lgcns_v2_survey {}
+explore: lgcns_nxpoc_nxuser {}
