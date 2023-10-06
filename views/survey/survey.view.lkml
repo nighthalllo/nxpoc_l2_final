@@ -76,7 +76,7 @@ view: survey {
     type: number
     sql: ${TABLE}.nexonsn ;;
     link: {
-      label: "2-1. Survey Analysis"
+      label: "2-3. User Analysis"
       url: "/dashboards/49?Nexonsn={{ value }}"
     }
   }
