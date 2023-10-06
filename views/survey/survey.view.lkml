@@ -8,7 +8,7 @@ view: survey {
     sql: ${TABLE}.qid ;;
     link: {
       label: "2-2. Response Analysis"
-      url: "/dashboards/39?pid={{ value }}"
+      url: "/dashboards/48?질문Id={{ value }}"
     }
   }
 
@@ -19,7 +19,7 @@ view: survey {
     sql: ${TABLE}.sid ;;
     link: {
       label: "2-1. Survey Analysis"
-      url: "/dashboards/33?설문ID={{ value }}"
+      url: "/dashboards/46?설문ID={{ value }}"
     }
   }
 
@@ -75,6 +75,10 @@ view: survey {
     description: "유저 ID"
     type: number
     sql: ${TABLE}.nexonsn ;;
+    link: {
+      label: "2-1. Survey Analysis"
+      url: "/dashboards/49?Nexonsn={{ value }}"
+    }
   }
   dimension_group: sdate {
     description: "설문일"
