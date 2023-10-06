@@ -165,6 +165,10 @@ view: survey {
     description: "질문"
     type: string
     sql: ${TABLE}.question_title ;;
+    link: {
+      label: "2-2. Response Analysis"
+      url: "/dashboards/48?질문명={{ value }}"
+    }
   }
   dimension: question_type {
     description: "질문의 답변 형식"
