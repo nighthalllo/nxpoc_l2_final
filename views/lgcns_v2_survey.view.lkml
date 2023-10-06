@@ -93,33 +93,65 @@ view: lgcns_v2_survey {
     sql: ${TABLE}.sdatetime ;;
   }
 
+#Drill Selector
+  parameter: Drill_By {
+    type: string
+    default_value: "group_title"
+    allowed_value:{label:"group_title" value:"group_title" }
+    allowed_value:{label:"is_main_account" value:"is_main_account" }
+    allowed_value:{label:"new_or_return_user" value:"new_or_return_user" }
+  }
+
+  ## dynamic dimension to drill by
+  dimension: Drill_fielded {
+    type: string
+    label_from_parameter: Drill_By
+    sql:
+    {% case Drill_By._parameter_value %}
+      {% when "'group_title'" %}
+        ${group_title}
+      {% when "'is_main_account'" %}
+        ${is_main_account}
+      {% when "'new_or_return_user'" %}
+        ${new_or_return_user}
+      {% else %}
+        null
+      {% endcase %}  ;;
+  }
+
+  measure: average_score {
+    type: average
+    sql: ${answer_num};;
+    drill_fields: [Drill_fielded,average_score]
+    }
   ##### MEASURES #####
+  measure: average_question_group {
+    type: average
+    sql: ${answer_num} ;;
+    drill_fields: [question_group, average_question_group]
+    link: {
+      label: "group by question_title"
+    }
+  }
+
   measure: count {
     description: "Count"
     type: count
-    drill_fields: [question_title ,question_group]
+    drill_fields: [question_group, average_question_group]
     link: {
       label: "group by question_title"
-      url: "{{link}}&pivots=count"
-    }
-    link: {
-      label: "group by question_group"
-      url: "{{link}}&pivots=count"
     }
   }
-  measure: average_likert_drill_by_survey {
-    description: "평균점수"
+
+
+
+  measure: average_question_title {
     type: average
     value_format_name: decimal_2
     sql: ${answer_num} ;;
-    drill_fields: [question_title, question_group]
+    drill_fields: [question_title,average_question_title]
     link: {
-      label: "Drill by question_title"
-      url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" | replace: \"user_segment.new_or_return_user,\", \"\" }}&limit=20&sorts=survey.group_title+asc"
-    }
-    link: {
-      label: "Drill by question_group"
-      url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" | replace: \"user_segment.group_title,\", \"\" }}&limit=20&sorts=survey.group_title+asc"
+      label: "group by question_title"
     }
   }
 }
