@@ -167,7 +167,7 @@ view: survey {
     sql: ${TABLE}.question_title ;;
     link: {
       label: "2-2. Response Analysis"
-      url: "https://nexonux.cloud.looker.com/dashboards/48?질문명={{ value }}&설문명={{ survey.survey3_name }}&질문유형={{ survey.question_type }}"
+      url: "https://nexonux.cloud.looker.com/dashboards/48?질문명={{ value }}&설문명={{ survey.survey3_name }}&질문+유형={{ survey.question_type }}"
     }
   }
   dimension: question_type {
