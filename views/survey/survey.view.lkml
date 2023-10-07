@@ -167,7 +167,7 @@ view: survey {
     sql: ${TABLE}.question_title ;;
     link: {
       label: "2-2. Response Analysis"
-      url: "/dashboards/48?질문명={{ value }}?"
+      url: "/dashboards/48?질문명={{ value }}%3F"
     }
   }
   dimension: question_type {
