@@ -319,14 +319,14 @@ view: survey {
 
   measure: max_main {
     type: string
-    sql: MAX(${is_main_account} ;;
+    sql: MAX(${is_main_account}) ;;
   }
   measure: max_group {
     type: string
-    sql: MAX(${group_title} ;;
+    sql: MAX(${group_title}) ;;
   }
   measure: max_new_return {
     type: string
-    sql: MAX(${new_or_return_user} ;;
+    sql: MAX(${new_or_return_user}) ;;
   }
 }
