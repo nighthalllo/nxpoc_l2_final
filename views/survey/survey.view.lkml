@@ -73,8 +73,8 @@ view: survey {
   }
   dimension: nexonsn {
     description: "유저 ID"
-    type: number
-    sql: ${TABLE}.nexonsn ;;
+    type: string
+    sql: string(${TABLE}.nexonsn) ;;
     link: {
       label: "2-3. User Analysis"
       url: "/dashboards/49?Nexonsn={{ value }}"
