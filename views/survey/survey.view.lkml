@@ -316,4 +316,17 @@ view: survey {
       url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" }}&pivots=user_segment.new_or_return_user&toggle=dat,pik,vis&sorts=user_segment.group_title+asc"
     }
   }
+
+  measure: max_main {
+    type: string
+    sql: MAX(${is_main_account} ;;
+  }
+  measure: max_group {
+    type: string
+    sql: MAX(${group_title} ;;
+  }
+  measure: max_new_return {
+    type: string
+    sql: MAX(${new_or_return_user} ;;
+  }
 }
