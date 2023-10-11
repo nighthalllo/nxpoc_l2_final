@@ -285,6 +285,10 @@ view: survey {
     type: max
     sql: ${answer_select} ;;
   }
+  measure: answer_select_avg {
+    type: average
+    sql: ${answer_select} ;;
+  }
 
   measure: number_of_unique_user_drill_by_user{
     description: "유니크 유저 수"
