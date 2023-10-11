@@ -297,9 +297,9 @@ view: survey {
     type: string
     sql: MAX(${answer_select}) ;;
   }
-  measure: answer_select_avg {
+  measure: answer_num_avg {
     type: average
-    sql: ${answer_select} ;;
+    sql: ${answer_num} ;;
   }
 
   measure: number_of_unique_user_drill_by_user{
