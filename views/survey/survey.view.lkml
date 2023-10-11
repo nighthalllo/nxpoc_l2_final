@@ -237,7 +237,10 @@ view: survey {
     description: "Count"
     type: count
   }
-
+  measure: avg {
+    description: "avg"
+    type: average
+  }
 
   measure: average_likert_drill_by_survey {
     description: "평균점수"
@@ -296,6 +299,10 @@ view: survey {
   measure: answer_select_max {
     type: string
     sql: MAX(${answer_select}) ;;
+  }
+  measure: answer_num_avg {
+    type: average
+    sql: ${answer_num} ;;
   }
 
   measure: number_of_unique_user_drill_by_user{
