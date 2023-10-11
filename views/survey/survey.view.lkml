@@ -237,7 +237,10 @@ view: survey {
     description: "Count"
     type: count
   }
-
+  measure: avg {
+    description: "avg"
+    type: average
+  }
 
   measure: average_likert_drill_by_survey {
     description: "평균점수"
