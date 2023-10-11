@@ -6,10 +6,10 @@ view: survey {
     description: "질문 ID"
     type: string
     sql: ${TABLE}.qid ;;
-    link: {
-      label: "2-2. Response Analysis"
-      url: "/dashboards/39?pid={{ value }}"
-    }
+    #link: {
+    #  label: "2-2. Response Analysis"
+    #  url: "/dashboards/48?질문Id={{ value }}"
+    #}
   }
 
   dimension: sid {
@@ -17,10 +17,10 @@ view: survey {
     type: number
     value_format_name: id
     sql: ${TABLE}.sid ;;
-    link: {
-      label: "2-1. Survey Analysis"
-      url: "/dashboards/33?설문ID={{ value }}"
-    }
+    #link: {
+    #  label: "2-1. Survey Analysis"
+    #  url: "/dashboards/46?설문ID={{ value }}"
+    #}
   }
 
   dimension: category {
@@ -75,6 +75,10 @@ view: survey {
     description: "유저 ID"
     type: number
     sql: ${TABLE}.nexonsn ;;
+    link: {
+      label: "2-3. User Analysis"
+      url: "/dashboards/49?Nexonsn={{ value }}"
+    }
   }
   dimension_group: sdate {
     description: "설문일"
@@ -126,6 +130,10 @@ view: survey {
     description: "소분류"
     type: string
     sql: ${TABLE}.survey3_name ;;
+    link: {
+      label: "2-1. Survey Analysis"
+      url: "/dashboards/46?설문명={{ value }}"
+    }
   }
 
   dimension: question_group {
@@ -157,6 +165,10 @@ view: survey {
     description: "질문"
     type: string
     sql: ${TABLE}.question_title ;;
+    link: {
+      label: "2-2. Response Analysis"
+      url: "https://nexonux.cloud.looker.com/dashboards/48?질문명={{ value }}&설문명={{ survey.survey3_name }}&질문+유형={{ survey.question_type }}"
+    }
   }
   dimension: question_type {
     description: "질문의 답변 형식"
@@ -282,8 +294,8 @@ view: survey {
   }
 
   measure: answer_select_max {
-    type: max
-    sql: ${answer_select} ;;
+    type: string
+    sql: MAX(${answer_select}) ;;
   }
   measure: answer_select_avg {
     type: average
@@ -307,5 +319,18 @@ view: survey {
       label: "Drill by User Segment & New/Return"
       url: "{{ link | replace: \"user_segment.nexonsn,\", \"\" }}&pivots=user_segment.new_or_return_user&toggle=dat,pik,vis&sorts=user_segment.group_title+asc"
     }
+  }
+
+  measure: max_main {
+    type: string
+    sql: MAX(${is_main_account}) ;;
+  }
+  measure: max_group {
+    type: string
+    sql: MAX(${group_title}) ;;
+  }
+  measure: max_new_return {
+    type: string
+    sql: MAX(${new_or_return_user}) ;;
   }
 }

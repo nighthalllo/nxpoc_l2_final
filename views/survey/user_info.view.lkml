@@ -1,4 +1,4 @@
-view: lgcns_nxpoc_nxuser {
+view: user_info {
   sql_table_name: `NXPOC_L2.LGCNS_NXPOC_NXUSER` ;;
 
   dimension: nexonsn {
