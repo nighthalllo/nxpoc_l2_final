@@ -10,7 +10,7 @@ explore: survey {
 
   join: survey_form {
     type: left_outer
-    sql_on: ${survey.qid} = ${survey_form.qid} ;;
+    sql_on: ${survey.question_id} = ${survey_form.question_id} ;;
     relationship: many_to_one
   }
   join: user_segment {
