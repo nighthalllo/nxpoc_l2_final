@@ -81,7 +81,11 @@ view: survey_form {
     type: string
     sql: ${TABLE}.is_regular ;;
   }
-
+  dimension: major_question {
+    description: "주요질문여부(Y/N)"
+    type: string
+    sql: ${TABLE}.major_question ;;
+  }
 
   ## 질문관련
   dimension: qid {
