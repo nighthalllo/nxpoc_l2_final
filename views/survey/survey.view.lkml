@@ -287,13 +287,13 @@ view: survey {
   }
 
   measure: sdate_max_date {
-    type: max
-    sql: ${sdate_date} ;;
+    type: date
+    sql: MAX(${sdate_date}) ;;
   }
 
   measure: sdate_min_date {
-    type: min
-    sql: ${sdate_date} ;;
+    type: date
+    sql: MIN(${sdate_date}) ;;
   }
 
   measure: answer_select_max {
