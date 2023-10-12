@@ -166,16 +166,16 @@ view: survey {
     type: string
     sql: ${TABLE}.question_title ;;
     link: {
-      label: "{% if survey.question_type == 'likert' %}
+      label: "{% if survey.question_type == 'Likert' %}
           2-2. Likert Question Analysis
-        {% elsif survey.question_type == 'selective' %}
+        {% elsif survey.question_type == 'Selective' %}
           2-3. Selective Question Analysis
         {% endif %}"
       #label: "2-2. Response Analysis"
       #url: "https://nexonux.cloud.looker.com/dashboards/48?질문명={{ value }}&설문명={{ survey.survey3_name }}&질문+유형={{ survey.question_type }}"
-      url: "{% if survey.question_type == 'likert' %}
+      url: "{% if survey.question_type == 'Likert' %}
           https://nexonux.cloud.looker.com/dashboards/48?질문명={{ value }}&설문명={{ survey.survey3_name }}&질문+유형={{ survey.question_type }}
-        {% elsif survey.question_type == 'selective' %}
+        {% elsif survey.question_type == 'Selective' %}
           https://naver.com
         {% endif %}"
     }
