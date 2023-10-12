@@ -166,10 +166,10 @@ view: survey {
     type: string
     sql: ${TABLE}.question_title ;;
     link: {
-      label: "{% if question_type == 'likert' %} 2-2. Likert Question Analysis {% else %} 2-3. Selective Question Analysis {% endif %}"
+      label: "{% if survey.question_type == 'likert' %} 2-2. Likert Question Analysis {% else %} 2-3. Selective Question Analysis {% endif %}"
       #label: "2-2. Response Analysis"
       #url: "https://nexonux.cloud.looker.com/dashboards/48?질문명={{ value }}&설문명={{ survey.survey3_name }}&질문+유형={{ survey.question_type }}"
-      url: "{% if question_type == 'likert' %}
+      url: "{% if survey.question_type == 'likert' %}
         https://nexonux.cloud.looker.com/dashboards/48?질문명={{ value }}&설문명={{ survey.survey3_name }}&질문+유형={{ survey.question_type }}
         {% else %}
         https://naver.com
